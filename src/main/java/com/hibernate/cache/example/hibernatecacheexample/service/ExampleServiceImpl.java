@@ -41,5 +41,6 @@ public class ExampleServiceImpl implements ExampleService {
         //entityManager.clear();
         Parent parent = exampleRepository.retrieveParentWithIdWithEntiyManager(1);
 
-        return parent.getChildSet().size();    }
+        return parent.getChildSet().size();
+    }
 }
