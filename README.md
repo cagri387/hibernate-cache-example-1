@@ -1,4 +1,4 @@
-###DB Scripts
+**DB Scripts:**
 
 create table parent (id serial);
 create table child (id serial, parent_id integer not null, sex character varying(10));
