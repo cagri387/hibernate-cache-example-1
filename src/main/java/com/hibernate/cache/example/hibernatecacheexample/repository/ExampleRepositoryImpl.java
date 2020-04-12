@@ -16,7 +16,7 @@ public class ExampleRepositoryImpl implements ExampleRepository {
 
     private final SessionFactory sessionFactory;
 
-    private  final EntityManager entityManager;
+    private final EntityManager entityManager;
 
     @Override
     public List<Parent> retrieveParentsWithGirls() {

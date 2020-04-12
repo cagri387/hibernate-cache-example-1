@@ -62,7 +62,6 @@ public class DatabaseConfiguration {
         return sessionFactoryBean;
     }
 
-
     @Bean(name="customTransactionManager")
     @Primary
     public HibernateTransactionManager transactionManager() {

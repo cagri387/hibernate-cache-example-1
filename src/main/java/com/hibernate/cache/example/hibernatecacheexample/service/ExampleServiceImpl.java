@@ -23,7 +23,6 @@ public class ExampleServiceImpl implements ExampleService {
     @Override
     @Transactional(transactionManager = "customTransactionManager", readOnly = true)
     public int getNumberOfChildrenWithSessionFactory() {
-
         //just for adding parents to session (cache)
         List<Parent> parentList = exampleRepository.retrieveParentsWithGirls();
 
