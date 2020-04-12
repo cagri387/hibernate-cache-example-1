@@ -50,6 +50,8 @@ public class ExampleRepositoryImpl implements ExampleRepository {
         Fetch<Parent, Child> fetchChildren = parentRoot.fetch("childSet", JoinType.LEFT);
         Join<Parent, Child> joinChildren = (Join<Parent, Child>) fetchChildren;
         criteria.where(builder.equal(joinChildren.get("sex"), "girl"));
+
+        //criteria.where(builder.equal(parentRoot.get("id"), 1));
         criteria.distinct(true);
 
         return entityManager.createQuery(criteria).getResultList();
@@ -64,5 +66,16 @@ public class ExampleRepositoryImpl implements ExampleRepository {
         criteria.where(builder.equal(parentRoot.get("id"), id));
 
         return entityManager.createQuery(criteria).getSingleResult();
+    }
+
+    @Override
+    public List<Child> retrieveChildrenByParentId(int id) {
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Child> criteria = builder.createQuery(Child.class);
+        Root<Child> parentRoot = criteria.from(Child.class);
+        Join<Child, Parent> joinParent = parentRoot.join("parent", JoinType.INNER);
+        criteria.where(builder.equal(joinParent.get("id"), id));
+
+        return entityManager.createQuery(criteria).getResultList();
     }
 }

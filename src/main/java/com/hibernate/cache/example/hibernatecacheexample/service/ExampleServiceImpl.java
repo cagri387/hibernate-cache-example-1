@@ -1,5 +1,6 @@
 package com.hibernate.cache.example.hibernatecacheexample.service;
 
+import com.hibernate.cache.example.hibernatecacheexample.entity.Child;
 import com.hibernate.cache.example.hibernatecacheexample.entity.Parent;
 import com.hibernate.cache.example.hibernatecacheexample.repository.ExampleRepository;
 import lombok.RequiredArgsConstructor;
@@ -41,6 +42,8 @@ public class ExampleServiceImpl implements ExampleService {
         //entityManager.clear();
         Parent parent = exampleRepository.retrieveParentWithIdWithEntiyManager(1);
 
-        return parent.getChildSet().size();
+        List<Child> childList = exampleRepository.retrieveChildrenByParentId(1);
+
+        return childList.size();
     }
 }
