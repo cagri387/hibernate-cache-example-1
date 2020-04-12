@@ -1,19 +1,18 @@
 package com.hibernate.cache.example.hibernatecacheexample;
 
 import com.hibernate.cache.example.hibernatecacheexample.service.ExampleService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-
 @Component
-public class DriverBean {
+@RequiredArgsConstructor
+public class DriverBean implements CommandLineRunner {
 
-    @Autowired
-    private ExampleService exampleService;
+    private final ExampleService exampleService;
 
-    @PostConstruct
-    public void runExample() {
+    @Override
+    public void run(String... args) {
         System.out.println("Result (with SessionFactory): " + exampleService.getNumberOfChildrenWithSessionFactory());
         System.out.println("Result (with EntityManager): " + exampleService.getNumberOfChildrenWithEntityManager());
     }
