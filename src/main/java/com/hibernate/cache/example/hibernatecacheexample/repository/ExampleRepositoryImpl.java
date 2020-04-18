@@ -78,4 +78,9 @@ public class ExampleRepositoryImpl implements ExampleRepository {
 
         return entityManager.createQuery(criteria).getResultList();
     }
+
+    @Override
+    public Parent loadParent(int id) {
+        return sessionFactory.getCurrentSession().load(Parent.class, id);
+    }
 }

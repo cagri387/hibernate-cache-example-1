@@ -17,4 +17,6 @@ public interface ExampleRepository {
 
     List<Child> retrieveChildrenByParentId(int parentId);
 
+    Parent loadParent(int id);
+
 }

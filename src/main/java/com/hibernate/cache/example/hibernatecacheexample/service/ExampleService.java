@@ -4,4 +4,6 @@ public interface ExampleService {
     int getNumberOfChildrenWithSessionFactory();
 
     int getNumberOfChildrenWithEntityManager();
+
+    void getLazyParent();
 }

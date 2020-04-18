@@ -46,4 +46,17 @@ public class ExampleServiceImpl implements ExampleService {
 
         return childList.size();
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public void getLazyParent() {
+        Parent parent = exampleRepository.loadParent(1);
+        Parent anotherParent = exampleRepository.loadParent(2);
+        anotherParent.setName("Cemalettin");
+
+
+        if(anotherParent.equals(parent)) {
+            System.out.println("parents names are equal");
+        }
+    }
 }

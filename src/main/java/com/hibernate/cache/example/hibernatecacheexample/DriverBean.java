@@ -13,7 +13,8 @@ public class DriverBean implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        System.out.println("Result (with SessionFactory): " + exampleService.getNumberOfChildrenWithSessionFactory());
-        System.out.println("Result (with EntityManager): " + exampleService.getNumberOfChildrenWithEntityManager());
+        //System.out.println("Result (with SessionFactory): " + exampleService.getNumberOfChildrenWithSessionFactory());
+        //System.out.println("Result (with EntityManager): " + exampleService.getNumberOfChildrenWithEntityManager());
+        exampleService.getLazyParent();
     }
 }
