@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.*;
 import java.util.List;
 
@@ -16,7 +17,8 @@ public class ExampleRepositoryImpl implements ExampleRepository {
 
     private final SessionFactory sessionFactory;
 
-    private final EntityManager entityManager;
+    @PersistenceContext(unitName = "secondSessionFactory")
+    private EntityManager entityManager;
 
     @Override
     public List<Parent> retrieveParentsWithGirls() {

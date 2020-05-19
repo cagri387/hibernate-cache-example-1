@@ -3,7 +3,6 @@ package com.hibernate.cache.example.hibernatecacheexample;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -14,7 +13,7 @@ import java.util.Properties;
 
 @EnableTransactionManagement
 @Configuration
-public class DatabaseConfiguration {
+public class SecondDatabaseConfiguration {
     @Value("${spring.datasource.driver-class-name}")
     private String DB_DRIVER;
 
@@ -33,8 +32,7 @@ public class DatabaseConfiguration {
     @Value("${spring.jpa.show-sql}")
     private String HIBERNATE_SHOW_SQL;
 
-    @Bean
-    @Primary
+    @Bean("secondDataSource")
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(DB_DRIVER);
@@ -45,8 +43,7 @@ public class DatabaseConfiguration {
         return dataSource;
     }
 
-    @Bean
-    @Primary
+    @Bean("secondSessionFactory")
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
         sessionFactoryBean.setDataSource(dataSource());
@@ -62,9 +59,8 @@ public class DatabaseConfiguration {
         return sessionFactoryBean;
     }
 
-    @Bean(name="transactionManager")
-    @Primary
-    public HibernateTransactionManager transactionManager() {
+    @Bean(name="secondTransactionManager")
+    public HibernateTransactionManager transactionManager2() {
         HibernateTransactionManager transactionManager =
                 new HibernateTransactionManager(sessionFactory().getObject());
         transactionManager.setDefaultTimeout(600);
